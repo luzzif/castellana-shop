@@ -2,8 +2,9 @@ import React from "react";
 import PropTypes from "prop-types";
 import { Helmet } from "react-helmet";
 import { useStaticQuery, graphql } from "gatsby";
+import logoBlack from "../../images/logo-black.svg";
 
-export const Seo = ({ description, lang, meta, keywords, title }) => {
+export const Seo = ({ description, lang, meta, keywords, title, link }) => {
     const { site } = useStaticQuery(
         graphql`
             query {
@@ -12,6 +13,8 @@ export const Seo = ({ description, lang, meta, keywords, title }) => {
                         title
                         description
                         author
+                        siteUrl
+                        telephone
                     }
                 }
             }
@@ -26,7 +29,8 @@ export const Seo = ({ description, lang, meta, keywords, title }) => {
                 lang
             }}
             title={title}
-            titleTemplate={`%s | ${site.siteMetadata.title}`}
+            titleTemplate={site.siteMetadata.title}
+            link={link}
             meta={[
                 {
                     name: "description",
@@ -59,6 +63,10 @@ export const Seo = ({ description, lang, meta, keywords, title }) => {
                 {
                     name: "twitter:description",
                     content: metaDescription
+                },
+                {
+                    name: "theme-color",
+                    content: "#f2812d"
                 }
             ]
                 .concat(
@@ -77,7 +85,8 @@ export const Seo = ({ description, lang, meta, keywords, title }) => {
 Seo.defaultProps = {
     lang: "en",
     meta: [],
-    keywords: []
+    keywords: [],
+    link: []
 };
 
 Seo.propTypes = {
@@ -85,5 +94,6 @@ Seo.propTypes = {
     lang: PropTypes.string,
     meta: PropTypes.array,
     keywords: PropTypes.arrayOf(PropTypes.string),
-    title: PropTypes.string.isRequired
+    title: PropTypes.string.isRequired,
+    link: PropTypes.array
 };
