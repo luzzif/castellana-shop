@@ -2,7 +2,6 @@ import React from "react";
 import PropTypes from "prop-types";
 import { Helmet } from "react-helmet";
 import { useStaticQuery, graphql } from "gatsby";
-import logoBlack from "../../images/logo-black.svg";
 
 export const Seo = ({ description, lang, meta, keywords, title, link }) => {
     const { site } = useStaticQuery(

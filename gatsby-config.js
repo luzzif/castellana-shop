@@ -2,8 +2,6 @@ require("dotenv").config({
     path: `.env.${process.env.NODE_ENV}`
 });
 
-const proxy = require("http-proxy-middleware");
-
 module.exports = {
     siteMetadata: {
         title: "Castellana food service shop",
